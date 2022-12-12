@@ -76,7 +76,9 @@ The needed files are:
 
 Check all the steps of exploratory data analisys and model development followed in notebook.ipynb, and then continue with the model training. 
 
-3 - To train the final model run final_model.py, select and save a model.
+If you prefer not to run all the code for the development of the model, which is slow and tedious, go to the laizy/fast start section.
+
+3 - To train the final model run final_model.py, select a model and continue.
 
 ```bash
 pipenv run python final_model.py
@@ -87,7 +89,7 @@ If you prefer to install the dependencies locally, run:
 ```bash
 pipenv install
 ``` 
-4 - Transform the trained final model to a tensorflow lite instance model. To achieve this run the tensorflow-lite-instance.py script. 
+4 - Transform the selected final model to a tensorflow lite instance model. To achieve this run the tensorflow-lite-instance.py script. 
 Remember to change the name of the model to the one you previously train and save.
 
 ```bash
@@ -96,16 +98,29 @@ pipenv run python tensorflow-lite-instance.py
 
 Once we have created the tensorflow lite instance of our developed model we can follow the steps to make the model deployment. 
 
+## Laizy/fast start 
+
+A model example is uploaded to the repository in case you do not have time to train and select the models. Also the model transformation to tensorflow-lite-instance has been performed.
+
+* Final model trained: **EfficientNetB411_0.970.h5**
+
+* Tensorflow-lite-instance: **kitchen.tflite**
+
 ## Test lambda function code
+
+To complete the event url, access https://www.kaggle.com/competitions/kitchenware-classification/data , look for an image and copy its url access link and paste it. Then try out the function classification. 
+
+The example web page should be expired. 
+
+* Example: https://storage.googleapis.com/kagglesdsdata/competitions/42532/4724339/images/0000.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=databundle-worker-v2%40kaggle-161607.iam.gserviceaccount.com%2F20221207%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20221207T161008Z&X-Goog-Expires=345600&X-Goog-SignedHeaders=host&X-Goog-Signature=2603df96a71f8ef00d6bea2e1540626e057b8874de18601df650ef695d6a677f7705ca0397cfd6c8f0c55d87c250db99ae4551065907e0e734e61beb0a7f2d8fcab9c099c49c7ff14fb69f784c57b45865360f49559b8913ffa6b777238085091738ad6af68561f96dbd571b7dbf31f797424ad05e1b808c979674f8b2eafc43924824812b71b1710b5e8bddcf6426e98bd9195b1cb1da9b6493e5ee2cb03d19f8a76cfa292b29672f5052b13925ce38e0185924f048a0f1e398776f6e0cb1bca879ed239f52e2a300b2752fe3cf89d2d9ffd5724d9cc10aa344b66328e9bf372e9f5aeb8a0ec3e5c22af607f4c8cd217bc0843ee16b8cd44954d2173c937c2b
 
 ```bash
 ipython
 import lambda_function
 
-# Cup image
-event = {"url":'https://storage.googleapis.com/kagglesdsdata/competitions/42532/4724339/images/0000.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=databundle-worker-v2%40kaggle-161607.iam.gserviceaccount.com%2F20221207%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20221207T161008Z&X-Goog-Expires=345600&X-Goog-SignedHeaders=host&X-Goog-Signature=2603df96a71f8ef00d6bea2e1540626e057b8874de18601df650ef695d6a677f7705ca0397cfd6c8f0c55d87c250db99ae4551065907e0e734e61beb0a7f2d8fcab9c099c49c7ff14fb69f784c57b45865360f49559b8913ffa6b777238085091738ad6af68561f96dbd571b7dbf31f797424ad05e1b808c979674f8b2eafc43924824812b71b1710b5e8bddcf6426e98bd9195b1cb1da9b6493e5ee2cb03d19f8a76cfa292b29672f5052b13925ce38e0185924f048a0f1e398776f6e0cb1bca879ed239f52e2a300b2752fe3cf89d2d9ffd5724d9cc10aa344b66328e9bf372e9f5aeb8a0ec3e5c22af607f4c8cd217bc0843ee16b8cd44954d2173c937c2b'}
+event = {"url":''}
 
-lambda_function.predict(event,None)
+lambda_function.lambda_handler(event,None)
 ```
 
 ## Test Docker image locally
