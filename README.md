@@ -43,27 +43,27 @@ kaggle competitions download -c kitchenware-classification
 
 ## Files
 
-A) The first file is the [notebook](https://github.com/martinnnuez/Kitchenware-classifier/blob/main/notebook.ipynb) where the data preparation, exploratory data analysis, model selection process and hyperparameter tuning is done.
+A) The first file is the [notebook](https://github.com/martinnnuez/Kitchenware-classifier/blob/master/notebook.ipynb) where the data preparation, exploratory data analysis, model selection process and hyperparameter tuning is done.
 
-B) The [final_model](https://github.com/martinnnuez/Kitchenware-classifier/blob/main/final_model.py) file is the file in charged of performing the final model training with the best hyperparameters found while performing the model optimization. Remember after training, all the models are going to be saved in to the directory, you need to select the best performing model and save its name. 
+B) The [final_model](https://github.com/martinnnuez/Kitchenware-classifier/blob/master/final_model.py) file is the file in charged of performing the final model training with the best hyperparameters found while performing the model optimization. Remember after training, all the models are going to be saved in to the directory, you need to select the best performing model and save its name. 
 
-C) The [tensorflow-lite-instance](https://github.com/martinnnuez/Kitchenware-classifier/blob/main/tensorflow-lite-instance.py) file is the one that produces transformation of our previous trained model to a tensorflow lite instance. Remember to change the name of the model to the one you have previously trained and selected.  
+C) The [tensorflow-lite-instance](https://github.com/martinnnuez/Kitchenware-classifier/blob/master/tensorflow-lite-instance.py) file is the one that produces transformation of our previous trained model to a tensorflow lite instance. Remember to change the name of the model to the one you have previously trained and selected.  
 
-D) The [test](https://github.com/martinnnuez/Kitchenware-classifier/blob/main/test.py) in charged of evaluating if the model is working properly. If you comment the Locally deployment url and uncomment the AWS deployment url you can test out how the lambda function deployment works.  
+D) The [test](https://github.com/martinnnuez/Kitchenware-classifier/blob/master/test.py) in charged of evaluating if the model is working properly. If you comment the Locally deployment url and uncomment the AWS deployment url you can test out how the lambda function deployment works.  
 
-E) The [lambda_function](https://github.com/martinnnuez/Kitchenware-classifier/blob/main/lambda_function.py) file is the one that allows to implement the tensorflow lite instance as a lambda function for AWS.  
+E) The [lambda_function](https://github.com/martinnnuez/Kitchenware-classifier/blob/master/lambda_function.py) file is the one that allows to implement the tensorflow lite instance as a lambda function for AWS.  
 
 # Instructions to run
 
 ## Complete and simple way:
 
-* 1- Clone github repo:
+1- Clone github repo:
 
 ```bash
 git clone repo name
 ```
 
-* 2 - Open a terminal and navigate to the directory. Then download the data sets for the development of this problem.
+2 - Open a terminal and navigate to the directory. Then download the data sets for the development of this problem.
 All the needed files can be found at: 
 
 https://www.kaggle.com/competitions/kitchenware-classification/data
@@ -76,7 +76,7 @@ The needed files are:
 
 Check all the steps of exploratory data analisys and model development followed in notebook.ipynb, and then continue with the model training. 
 
-* 3 - To train the final model run final_model.py, select and save a model.
+3 - To train the final model run final_model.py, select and save a model.
 
 ```bash
 pipenv run python final_model.py
@@ -87,7 +87,7 @@ If you prefer to install the dependencies locally, run:
 ```bash
 pipenv install
 ``` 
-* 4 - Transform the trained final model to a tensorflow lite instance model. To achieve this run the tensorflow-lite-instance.py script. 
+4 - Transform the trained final model to a tensorflow lite instance model. To achieve this run the tensorflow-lite-instance.py script. 
 Remember to change the name of the model to the one you previously train and save.
 
 ```bash
