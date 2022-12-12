@@ -8,6 +8,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 from tensorflow.keras.preprocessing.image import load_img
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 # EfficientNetB4
 from tensorflow.keras.applications.efficientnet import EfficientNetB4
@@ -20,6 +21,8 @@ train_df=train.groupby('label', group_keys=False).apply(lambda x: x.sample(frac=
 print(train_df.shape)
 val_df = pd.concat([train_df,train]).drop_duplicates(keep=False)
 print(val_df.shape)
+
+path = os.getcwd()
 
 train_gen = ImageDataGenerator(preprocessing_function=preprocess_input_efficient)
 train_ds=train_gen.flow_from_dataframe(dataframe=train_df, directory=f'{path}/{"images"}', 
