@@ -49,7 +49,9 @@ B) The [final_model](https://github.com/martinnnuez/Kitchenware-classifier/blob/
 
 C) The [tensorflow-lite-instance](https://github.com/martinnnuez/Kitchenware-classifier/blob/master/tensorflow-lite-instance.py) file is the one that produces transformation of our previous trained model to a tensorflow lite instance. Remember to change the name of the model to the one you have previously trained and selected.  
 
-D) The [test](https://github.com/martinnnuez/Kitchenware-classifier/blob/master/test.py) in charged of evaluating if the model is working properly. If you comment the Locally deployment url and uncomment the AWS deployment url you can test out how the lambda function deployment works.  
+D) The [test-aws](https://github.com/martinnnuez/Kitchenware-classifier/blob/master/test-aws.py) in charged of evaluating if the model deployment to AWS is working properly. 
+
+D) The [test-local](https://github.com/martinnnuez/Kitchenware-classifier/blob/master/test-local.py) in charged of evaluating if the model deployment locally is working properly. 
 
 E) The [lambda_function](https://github.com/martinnnuez/Kitchenware-classifier/blob/master/lambda_function.py) file is the one that allows to implement the tensorflow lite instance as a lambda function for AWS.  
 
@@ -108,9 +110,9 @@ A model example is uploaded to the repository in case you do not have time to tr
 
 ## Test lambda function code
 
-To complete the event url, access https://www.kaggle.com/competitions/kitchenware-classification/data , look for an image and copy its url access link and paste it. Then try out the function classification. 
+Run the following code in the termina, to complete the event url, access https://www.kaggle.com/competitions/kitchenware-classification/data , look for an image and copy its url access link and paste it. Then try out the function classification. 
 
-The example web page (should be expired). 
+If the example web page is not expired, use it as example. 
 
 * Example: https://storage.googleapis.com/kagglesdsdata/competitions/42532/4724339/images/0000.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=databundle-worker-v2%40kaggle-161607.iam.gserviceaccount.com%2F20221212%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20221212T152149Z&X-Goog-Expires=345600&X-Goog-SignedHeaders=host&X-Goog-Signature=734c5c334ce764fd60340d524e4a50ec3e5e35b44850f43100da2e5d75efaf8dafc3ae5d82f3caee653aee184aa75cdc183e2587a5689b5d25c16f0d2ead957e15f579305c68448331b63c8a78b1a67e67947cae95efb7dc75a1d8ad0ad8a20a41119cc7cfa9ca538be5658b279ac354d915be9bc6d125ff83b9c742cd1649d7dd53b29655b094b14077fa8e71ecaf03c8374d901ec4a20eb7768c4ec084994a265decfc02b49f48b9cddc685dffc8a328e7a1a909835136469410607f846a3f6d5f6f0ff0215d65256cfcc349a4fe08fc82890e76620b4e4e7584c4f61aa06ce8c529a98d906b88ff87fa2b89641f3cae5e0598a186523e7cce9ed96b07bcd7
 
@@ -118,7 +120,9 @@ The example web page (should be expired).
 ipython
 import lambda_function
 
-event = {"url":''}
+# event = {"url":''}
+
+event = {"url":'https://storage.googleapis.com/kagglesdsdata/competitions/42532/4724339/images/0000.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=databundle-worker-v2%40kaggle-161607.iam.gserviceaccount.com%2F20221212%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20221212T152149Z&X-Goog-Expires=345600&X-Goog-SignedHeaders=host&X-Goog-Signature=734c5c334ce764fd60340d524e4a50ec3e5e35b44850f43100da2e5d75efaf8dafc3ae5d82f3caee653aee184aa75cdc183e2587a5689b5d25c16f0d2ead957e15f579305c68448331b63c8a78b1a67e67947cae95efb7dc75a1d8ad0ad8a20a41119cc7cfa9ca538be5658b279ac354d915be9bc6d125ff83b9c742cd1649d7dd53b29655b094b14077fa8e71ecaf03c8374d901ec4a20eb7768c4ec084994a265decfc02b49f48b9cddc685dffc8a328e7a1a909835136469410607f846a3f6d5f6f0ff0215d65256cfcc349a4fe08fc82890e76620b4e4e7584c4f61aa06ce8c529a98d906b88ff87fa2b89641f3cae5e0598a186523e7cce9ed96b07bcd7'}
 
 lambda_function.lambda_handler(event,None)
 ```
@@ -136,7 +140,7 @@ docker run -it --rm -p 8080:8080 kitchen-model:latest
 
 3. Open a new termianl and run
 
-* Remember to add an actualized url to the test-local.py script to access an image to classify, to look for one you should access https://www.kaggle.com/competitions/kitchenware-classification/data .
+* Remember to add an actualized url to the test-local.py script to access an image to classify, if the example image link has expired. To look for an image you should access https://www.kaggle.com/competitions/kitchenware-classification/data .
 
 Once copied the url you need to paste and replace the one in test-local.py.
 
@@ -194,7 +198,8 @@ sudo docker push 889921088684.dkr.ecr.us-east-1.amazonaws.com/kitchenware-image:
 
 * Event: 
 
-Remember to paste an url to an image, you can find the url in https://www.kaggle.com/competitions/kitchenware-classification/data .
+* Remember to add an actualized url to the test-local.py script to access an image to classify, if the example image link has expired. To look for an image you should access https://www.kaggle.com/competitions/kitchenware-classification/data .
+
 
 {
     "url": ""
@@ -249,7 +254,7 @@ I replace it in test.py and try it out:
 
 * Remember to add a /method_name to the url AWS provided. 
 
-* Remember to add an actualized url to the test-aws.py script to access an image to classify, to look for one you should access https://www.kaggle.com/competitions/kitchenware-classification/data .
+* Remember to add an actualized url to the test-local.py script to access an image to classify, if the example image link has expired. To look for an image you should access https://www.kaggle.com/competitions/kitchenware-classification/data .
 
 Once copied the url you need to paste and replace the one in test-aws.py.
 
